@@ -139,5 +139,8 @@ esp_err_t esp_wireguard_disconnect(wireguard_ctx_t *ctx);
 }
 #endif
 
+void wireguard_generate_private_key(uint8_t *key);
+bool wireguard_generate_public_key(uint8_t *public_key, const uint8_t *private_key);
+
 #endif
 // vim: expandtab

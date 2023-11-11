@@ -408,12 +408,12 @@ static void wireguard_clamp_private_key(uint8_t *key) {
 	key[31] = (key[31] & 127) | 64;
 }
 
-static void wireguard_generate_private_key(uint8_t *key) {
+void wireguard_generate_private_key(uint8_t *key) {
 	wireguard_random_bytes(key, WIREGUARD_PRIVATE_KEY_LEN);
 	wireguard_clamp_private_key(key);
 }
 
-static bool wireguard_generate_public_key(uint8_t *public_key, const uint8_t *private_key) {
+bool wireguard_generate_public_key(uint8_t *public_key, const uint8_t *private_key) {
 	static const uint8_t basepoint[WIREGUARD_PUBLIC_KEY_LEN] = { 9 };
 	bool result = false;
 	if (memcmp(private_key, zero_key, WIREGUARD_PUBLIC_KEY_LEN) != 0) {
